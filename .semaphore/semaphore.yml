@@ -31,12 +31,13 @@ blocks:
         commands:
           - checkout
           - cache restore
+          - gem install bundler -v '2.1.4'
+          - bundle install --path vendor/bundle
           - cache store
       jobs:
         - name: Build
           commands:
             - bundle exec xcversion select 12.2
-            - bundle exec pod install
             - bundle exec fastlane build
   - name: Take screenshots
     task:
